@@ -216,3 +216,63 @@ public class Teapot : Device
         WriteLine(_desc);
     }
 }
+
+public class Microwave : Device
+{
+    public Microwave(string name, string desc) : base(name, desc) { }
+
+    public void Sound()
+    {
+        WriteLine("Typical Microwave sound");
+    }
+
+    public void Show()
+    {
+        WriteLine(_name);
+    }
+
+    public void Desc()
+    {
+        WriteLine(_desc);
+    }
+}
+
+public class Car : Device
+{
+    public Car(string name, string desc) : base(name, desc) { }
+
+    public void Sound()
+    {
+        WriteLine("Typical Car sound");
+    }
+
+    public void Show()
+    {
+        WriteLine(_name);
+    }
+
+    public void Desc()
+    {
+        WriteLine(_desc);
+    }
+}
+
+public class Steamboat : Device
+{
+    public Steamboat(string name, string desc) : base(name, desc) { }
+
+    public void Sound()
+    {
+        WriteLine("Typical Steamboat sound");
+    }
+
+    public void Show()
+    {
+        WriteLine(_name);
+    }
+
+    public void Desc()
+    {
+        WriteLine(_desc);
+    }
+}
