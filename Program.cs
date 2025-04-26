@@ -74,6 +74,18 @@ Trombone trombone = new Trombone("тромбон", "хз ваще", "я не п�
 Ukulele ukulele = new Ukulele("укулеле", "укулеле", "укулеле");
 Violoncelle violoncelle = new Violoncelle("1", "ц", "3");
 
+// ZADANIE 4
+
+/*
+
+Создать абстрактный базовый класс Worker (работника)
+с методом Print(). Создайте четыре производных класса:
+President, Security, Manager, Engineer. Переопределите метод
+Print() для вывода информации, соответствующей
+каждому типу работника.
+
+*/
+
 // KLASSI ZADANIYA 1
 
 public class Money
@@ -417,5 +429,29 @@ public class Violoncelle : Musical_tool
     public void History()
     {
         WriteLine(_creation_hist);
+    }
+}
+
+// KLASSI ZADANIYA 4
+
+public abstract class Worker
+{
+    public abstract void print();
+}
+
+public class President : Worker
+{
+    int _salary;
+    string _country;
+
+    public President(int salary, string country)
+    {
+        _salary = salary;
+        _country = country;
+    }
+
+    public override void print()
+    {
+        WriteLine($"President of the country named {_country} has salary about {_salary} dollars.");
     }
 }
