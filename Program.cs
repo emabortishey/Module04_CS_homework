@@ -1,10 +1,10 @@
 ﻿using static System.Console;
 
-Merchant test = new Merchant("test", '$', 12, 99);
+Merchant test = new Merchant("test", '$', 12, 55);
 
 test.print();
 
-test.rise_price("0.2");
+test.loose_price("5.95");
 
 test.print();
 
@@ -83,7 +83,7 @@ public class Merchant : Money
     {
         if (price.IndexOf('.') != -1)
         {
-            char[] whole_p = {' '}, fract_p = {' '};
+            char[] whole_p = new char[char.MaxValue], fract_p = new char[char.MaxValue];
 
             price.CopyTo(0, whole_p, 0, price.IndexOf('.'));
             price.CopyTo(price.IndexOf('.') + 1, fract_p, 0, price.Length - price.IndexOf('.')-1);
@@ -103,10 +103,41 @@ public class Merchant : Money
         }
         else
         {
-            char[] whole_p = { };
+            char[] whole_p = new char[char.MaxValue];
             price.CopyTo(0, whole_p, 0, price.Length - 1);
 
             _whole += int.Parse(whole_p);
+        }
+    }
+
+    public void loose_price(string price)
+    {
+        if (price.IndexOf('.') != -1)
+        {
+            char[] whole_m = new char[char.MaxValue], fract_m = new char[char.MaxValue];
+
+            price.CopyTo(0, whole_m, 0, price.IndexOf('.'));
+            price.CopyTo(price.IndexOf('.') + 1, fract_m, 0, price.Length - price.IndexOf('.') - 1);
+
+            _whole -= int.Parse(whole_m);
+
+            if ((_fract - int.Parse(fract_m)) <= 0)
+            {
+                _whole -= 1;
+
+                _fract = 100 + (_fract - int.Parse(fract_m));
+            }
+            else
+            {
+                _fract -= int.Parse(fract_m);
+            }
+        }
+        else
+        {
+            char[] whole_m = new char[char.MaxValue];
+            price.CopyTo(0, whole_m, 0, price.Length - 1);
+
+            _whole -= int.Parse(whole_m);
         }
     }
 }
