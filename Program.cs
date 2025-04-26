@@ -1,12 +1,53 @@
 ﻿using static System.Console;
 
-Merchant test = new Merchant("test", '$', 12, 55);
+// ZADANIE 1
+
+/*
+
+Запрограммируйте класс Money (объект класса оперирует 
+одной валютой) для работы с деньгами.
+В классе должны быть предусмотрены поле для хранения 
+целой части денег (доллары, евро, гривны и т.д.) и поле
+для хранения копеек (центы, евроценты, копейки и т.д.).
+Реализовать методы для вывода суммы на экран, 
+задания значений для частей.
+На базе класса Money создать класс Product для работы
+с продуктом или товаром. Реализовать метод, 
+позволяющий уменьшить цену на заданное число.
+Для каждого из классов реализовать необходимые
+методы и поля.
+
+*/
+
+Merchandise test = new Merchandise("test", '$', 12, 55);
 
 test.print();
 
 test.loose_price("5.95");
 
 test.print();
+
+test.loose_price("7.48");
+
+test.print();
+
+// ZADANIE 2
+
+/*
+
+Создать базовый класс «Устройство» и производные
+классы «Чайник», «Микроволновка», «Автомобиль», «Пароход». 
+С помощью конструктора установить имя каждого
+устройства и его характеристики.
+Реализуйте для каждого из классов методы:
+■ Sound — издает звук устройства (пишем текстом в
+консоль);
+■ Show — отображает название устройства;
+■ Desc — отображает описание устройства.
+
+*/
+
+// KLASSI ZADANIYA 1
 
 public class Money
 {
@@ -57,11 +98,11 @@ public class Money
     }
 }
 
-public class Merchant : Money
+public class Merchandise : Money
 {
     string _name;
 
-    public Merchant(string name, char sign, int whole, int fract) : base(sign, whole, fract)
+    public Merchandise(string name, char sign, int whole, int fract) : base(sign, whole, fract)
     {
         _name = name;
     }
@@ -139,5 +180,39 @@ public class Merchant : Money
 
             _whole -= int.Parse(whole_m);
         }
+    }
+}
+
+// KLASSY ZADANIYA 2
+
+public class Device
+{
+    protected string _name;
+    protected string _desc;
+
+    public Device(string name, string desc)
+    {
+        _name = name;
+        _desc = desc;
+    }
+}
+
+public class Teapot : Device
+{
+    public Teapot(string name, string desc) : base(name, desc) { }
+
+    public void Sound()
+    {
+        WriteLine("Typical Teapot sound");
+    }
+
+    public void Show()
+    {
+        WriteLine(_name);
+    }
+
+    public void Desc()
+    {
+        WriteLine(_desc);
     }
 }
