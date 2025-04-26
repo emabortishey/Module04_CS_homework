@@ -41,4 +41,9 @@ public class Money
             }
         }
     }
+
+    public void print()
+    {
+        WriteLine($"{_whole}.{_fract} {_sign}");
+    }
 }
