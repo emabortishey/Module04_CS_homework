@@ -47,3 +47,19 @@ public class Money
         WriteLine($"{_whole}.{_fract} {_sign}");
     }
 }
+
+public class Merchant : Money
+{
+    string _name;
+
+    public Merchant(string name, char sign, int whole, int fract) : base(sign, whole, fract)
+    {
+        _name = name;
+    }
+
+    public string Name
+    {
+        get { return _name; }
+        set { _name = value; }
+    }
+}
