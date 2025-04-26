@@ -455,3 +455,54 @@ public class President : Worker
         WriteLine($"President of the country named {_country} has salary about {_salary} dollars.");
     }
 }
+
+public class Security : Worker
+{
+    int _salary;
+    string _object;
+
+    public Security(int salary, string objectt)
+    {
+        _salary = salary;
+        _object = objectt;
+    }
+
+    public override void print()
+    {
+        WriteLine($"Security of the object named {_object} has salary about {_salary} dollars.");
+    }
+}
+
+public class Manager : Worker
+{
+    int _salary;
+    string _company;
+
+    public Manager(int salary, string company)
+    {
+        _salary = salary;
+        _company = company;
+    }
+
+    public override void print()
+    {
+        WriteLine($"Manager of the company named {_company} has salary about {_salary} dollars.");
+    }
+}
+
+public class Engineer : Worker
+{
+    int _salary;
+    string _class;
+
+    public Engineer(int salary, string classs)
+    {
+        _salary = salary;
+        _class = classs;
+    }
+
+    public override void print()
+    {
+        WriteLine($"Engineer that's having education on {_class} class has salary about {_salary} dollars.");
+    }
+}
