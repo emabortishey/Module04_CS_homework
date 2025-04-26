@@ -28,6 +28,17 @@ public class Money
     public int Fractional
     {
         get { return _fract; }
-        set { _fract = value; }
+        set 
+        {
+            if (value < 100 && value > 0)
+            {
+                _fract = value;
+            }
+            else if (value > 100)
+            {
+                _whole += value / 100;
+                _fract = value - 100;
+            }
+        }
     }
 }
