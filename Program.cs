@@ -1,10 +1,19 @@
 ﻿using static System.Console;
 
+Merchant test = new Merchant("test", '$', 12, 99);
+
+test.print();
+
+test.rise_price("0.2");
+
+test.print();
+
 public class Money
 {
-    char _sign;
-    int _whole;
-    int _fract;
+    protected char _sign;
+    protected int _whole;
+    protected int _fract;
+    
 
     public Money(char sign, int whole, int fract)
     {
@@ -37,12 +46,12 @@ public class Money
             else if (value > 100)
             {
                 _whole += value / 100;
-                _fract = value - 100;
+                _fract = value - (100 * value / 100);
             }
         }
     }
 
-    public void print()
+    public virtual void print()
     {
         WriteLine($"{_whole}.{_fract} {_sign}");
     }
@@ -61,5 +70,43 @@ public class Merchant : Money
     {
         get { return _name; }
         set { _name = value; }
+    }
+
+    public override void print()
+    {
+        WriteLine($"Название продукта: {_name}");
+
+        base.print();
+    }
+
+    public void rise_price(string price)
+    {
+        if (price.IndexOf('.') != -1)
+        {
+            char[] whole_p = {' '}, fract_p = {' '};
+
+            price.CopyTo(0, whole_p, 0, price.IndexOf('.'));
+            price.CopyTo(price.IndexOf('.') + 1, fract_p, 0, price.Length - price.IndexOf('.')-1);
+
+            _whole += int.Parse(whole_p);
+
+            if ((_fract + int.Parse(fract_p)) >= 100) 
+            {
+                _whole += (_fract + int.Parse(fract_p)) / 100;
+
+                _fract = (_fract + int.Parse(fract_p)) - (((_fract + int.Parse(fract_p)) / 100) * 100);
+            }
+            else
+            {
+                _fract += int.Parse(fract_p);
+            }
+        }
+        else
+        {
+            char[] whole_p = { };
+            price.CopyTo(0, whole_p, 0, price.Length - 1);
+
+            _whole += int.Parse(whole_p);
+        }
     }
 }
