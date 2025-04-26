@@ -52,6 +52,28 @@ Microwave microwave = new Microwave("микроволновка", "делает 
 Car car = new Car("машина", "делает врум врум");
 Steamboat steamboat = new Steamboat("пароход", "хз");
 
+// ZADANIE 3
+
+/*
+
+Создать базовый класс «Музыкальный инструмент»
+и производные классы «Скрипка», «Тромбон», «Укулеле»,
+«Виолончель». С помощью конструктора установить имя
+каждого музыкального инструмента и его характеристики.
+Реализуйте для каждого из классов методы:
+■ Sound — издает звук музыкального инструмента
+(пишем текстом в консоль);
+■ Show — отображает название музыкального инструмента;
+■ Desc — отображает описание музыкального инструмента;
+■ History — отображает историю создания музыкального инструмента.
+
+*/
+
+Violin violin = new Violin("скрипко", "скрипит", "я придумала");
+Trombone trombone = new Trombone("тромбон", "хз ваще", "я не придумывала, хз");
+Ukulele ukulele = new Ukulele("укулеле", "укулеле", "укулеле");
+Violoncelle violoncelle = new Violoncelle("1", "ц", "3");
+
 // KLASSI ZADANIYA 1
 
 public class Money
@@ -279,5 +301,121 @@ public class Steamboat : Device
     public void Desc()
     {
         WriteLine(_desc);
+    }
+}
+
+// KLASSI ZADANIYA 3
+
+public class Musical_tool
+{
+    protected string _name;
+    protected string _desc;
+    protected string _creation_hist;
+
+    public Musical_tool(string name, string desc, string creation_hist)
+    {
+        _name = name;
+        _desc = desc;
+        _creation_hist = creation_hist;
+    }
+}
+
+public class Violin : Musical_tool
+{
+    public Violin(string name, string desc, string creation_hist) : base(name, desc, creation_hist) { }
+
+    public void Sound()
+    {
+        WriteLine("Typical Violin sound");
+    }
+
+    public void Show()
+    {
+        WriteLine(_name);
+    }
+
+    public void Desc()
+    {
+        WriteLine(_desc);
+    }
+
+    public void History()
+    {
+        WriteLine(_creation_hist);
+    }
+}
+
+public class Trombone : Musical_tool
+{
+    public Trombone(string name, string desc, string creation_hist) : base(name, desc, creation_hist) { }
+
+    public void Sound()
+    {
+        WriteLine("Typical Trombone sound");
+    }
+
+    public void Show()
+    {
+        WriteLine(_name);
+    }
+
+    public void Desc()
+    {
+        WriteLine(_desc);
+    }
+
+    public void History()
+    {
+        WriteLine(_creation_hist);
+    }
+}
+
+public class Ukulele : Musical_tool
+{
+    public Ukulele(string name, string desc, string creation_hist) : base(name, desc, creation_hist) { }
+
+    public void Sound()
+    {
+        WriteLine("Typical Ukulele sound");
+    }
+
+    public void Show()
+    {
+        WriteLine(_name);
+    }
+
+    public void Desc()
+    {
+        WriteLine(_desc);
+    }
+
+    public void History()
+    {
+        WriteLine(_creation_hist);
+    }
+}
+
+public class Violoncelle : Musical_tool
+{
+    public Violoncelle(string name, string desc, string creation_hist) : base(name, desc, creation_hist) { }
+
+    public void Sound()
+    {
+        WriteLine("Typical Violoncelle sound");
+    }
+
+    public void Show()
+    {
+        WriteLine(_name);
+    }
+
+    public void Desc()
+    {
+        WriteLine(_desc);
+    }
+
+    public void History()
+    {
+        WriteLine(_creation_hist);
     }
 }
