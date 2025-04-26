@@ -19,6 +19,9 @@
 
 */
 
+// создание обьекта класса и испытание изменения его стоимости
+// а также последующий вывод для проверки результата
+
 Merchandise test = new Merchandise("test", '$', 12, 55);
 
 test.print();
@@ -47,6 +50,10 @@ test.print();
 
 */
 
+// т.к. в задании ничего не требовалось
+// кроме создания объектов класса,
+// я больше ничего и не делала
+
 Teapot teapot = new Teapot("чайник", "делает чай");
 Microwave microwave = new Microwave("микроволновка", "делает микроволны");
 Car car = new Car("машина", "делает врум врум");
@@ -69,6 +76,8 @@ Steamboat steamboat = new Steamboat("пароход", "хз");
 
 */
 
+// то же самое что и в предыдущем задании
+
 Violin violin = new Violin("скрипко", "скрипит", "я придумала");
 Trombone trombone = new Trombone("тромбон", "хз ваще", "я не придумывала, хз");
 Ukulele ukulele = new Ukulele("укулеле", "укулеле", "укулеле");
@@ -86,12 +95,19 @@ Print() для вывода информации, соответствующей
 
 */
 
+// а тут вообще ничего кроме создания класса и
+// переопределения метода не требовалось, поэтомк
+// тут я тоже класс даже не испытывала в работе
+
 // KLASSI ZADANIYA 1
 
 public class Money
 {
+    // знак валюты
     protected char _sign;
+    // целая часть
     protected int _whole;
+    // дробная
     protected int _fract;
     
 
@@ -123,6 +139,8 @@ public class Money
             {
                 _fract = value;
             }
+            // если было передано значение больше ста,
+            // то идёт прибавление перевеса в целую часть
             else if (value > 100)
             {
                 _whole += value / 100;
@@ -159,37 +177,56 @@ public class Merchandise : Money
         base.print();
     }
 
+    // метод повышения цены
     public void rise_price(string price)
     {
+        // если нету точки, то есть разделителя
+        // между дробной и целой частью, то значит и
+        // самой дробной части нет, поэтому идёт проверка
+        // для правильности дальнейших вычислений
         if (price.IndexOf('.') != -1)
         {
+            // создаём 2 переменные в виде символьных массивов т.к.
+            // метод копирования из строки принимает только массив
+            // и сразу задаём им макс. значение на всякий
             char[] whole_p = new char[char.MaxValue], fract_p = new char[char.MaxValue];
 
+            // в целый буфер копируем числа до точки
             price.CopyTo(0, whole_p, 0, price.IndexOf('.'));
+            // в дробный после неё и до конца
             price.CopyTo(price.IndexOf('.') + 1, fract_p, 0, price.Length - price.IndexOf('.')-1);
 
+            // в целый просто прибавляем скопированное
+            // и конвертированное число с помощью
+            // метода парсе, т.к. с конвертом у мя были проблемы
             _whole += int.Parse(whole_p);
 
+            // если текущая дробная часть плюс прибавляемая
+            // равняется больше 100, то также идёт перенос
+            // излишка в целую часть денег
             if ((_fract + int.Parse(fract_p)) >= 100) 
             {
                 _whole += (_fract + int.Parse(fract_p)) / 100;
 
                 _fract = (_fract + int.Parse(fract_p)) - (((_fract + int.Parse(fract_p)) / 100) * 100);
             }
+            // если превышения нет, просто прибавляем
             else
             {
                 _fract += int.Parse(fract_p);
             }
         }
+        // если дробной части нет и вовсе, то
+        // просто извлекаем из строки число и прибавляем
         else
         {
-            char[] whole_p = new char[char.MaxValue];
-            price.CopyTo(0, whole_p, 0, price.Length - 1);
-
-            _whole += int.Parse(whole_p);
+           _whole += int.Parse(price.ToCharArray());
         }
     }
 
+    // метод для понижения цены товара
+    // (тут всё почти то же самое, поэтому
+    // не буду расписывать лишние коммантарии)
     public void loose_price(string price)
     {
         if (price.IndexOf('.') != -1)
