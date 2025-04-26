@@ -47,6 +47,11 @@ test.print();
 
 */
 
+Teapot teapot = new Teapot("чайник", "делает чай");
+Microwave microwave = new Microwave("микроволновка", "делает микроволны");
+Car car = new Car("машина", "делает врум врум");
+Steamboat steamboat = new Steamboat("пароход", "хз");
+
 // KLASSI ZADANIYA 1
 
 public class Money
